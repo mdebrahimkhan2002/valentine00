@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine? 💖</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+            background-color: #ffe6e6;
+        }
+        h1 {
+            color: #ff4d6d;
+        }
+        .cartoon {
+            width: 250px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .yes-button, .no-button {
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .yes-button {
+            background-color: #ff85a2;
+            transition: transform 0.3s ease, font-size 0.3s ease;
+        }
+        .no-button {
+            background-color: lightgray;
+        }
+        /* Shake Animation */
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+        /* Bounce Animation */
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cute Romantic Cartoon GIF -->
+    <img src="https://media.tenor.com/3We6YkFZbn4AAAAC/cute-love.gif" alt="Romantic Cartoon" class="cartoon">
+    
+    <h1>Will you be my Valentine? 💘</h1>
+    <div class="buttons" id="buttons-container">
+        <button class="yes-button" onclick="handleYesClick()">Yes</button>
+        <button class="no-button" onclick="handleNoClick()">No</button>
+    </div>
+
+    <script>
+        let messages = [
+            "Are you sure? 🥺",
+            "Really sure? 😢",
+            "Think again! 😞",
+            "Please? 🥰",
+            "Last chance! 💖"
+        ];
+        let messageIndex = 0;
+
+        function handleNoClick() {
+            const noButton = document.querySelector(".no-button");
+            const yesButton = document.querySelector(".yes-button");
+
+            // Change "No" button text
+            noButton.textContent = messages[messageIndex];
+            messageIndex = (messageIndex + 1) % messages.length;
+
+            // Increase the size of "Yes" button
+            const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = (currentSize * 1.5) + "px";
+
+            // Apply bounce animation
+            yesButton.style.animation = "bounce 0.3s ease";
+            setTimeout(() => {
+                yesButton.style.animation = "";
+            }, 300);
+
+            // Make the "No" button shake playfully
+            noButton.style.animation = "shake 0.3s ease";
+            setTimeout(() => {
+                noButton.style.animation = "";
+            }, 300);
+        }
+
+        function handleYesClick() {
+            alert("Yay! You said YES! ❤🎉");
+
+            // Remove buttons
+            document.getElementById("buttons-container").remove();
+
+            // Redirect to the next page
+            setTimeout(() => {
+                window.location.href = "yes_page.html"; // Redirect after a short delay
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
